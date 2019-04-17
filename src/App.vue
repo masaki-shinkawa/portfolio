@@ -1,38 +1,52 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
+  <v-app v-resize="onResize">
+    <common-header />
     <v-content>
-      <HelloWorld />
+      <v-layout v-scroll="onScroll">
+        <transition mode="out-in">
+          <router-view />
+        </transition>
+      </v-layout>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import CommonHeader from "./components/CommonHeader";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    CommonHeader
   },
-  data() {
-    return {
-      //
-    };
+  mounted() {
+    this.onResize();
+  },
+  methods: {
+    onResize() {
+      this.$store.dispatch("onResize");
+    },
+    onScroll() {
+      this.$store.dispatch("onScroll");
+    }
   }
 };
 </script>
+
+<style lang="scss">
+.application {
+  width: 100%;
+}
+.v-content {
+  display: flex;
+  justify-content: center;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

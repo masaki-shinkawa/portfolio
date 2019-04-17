@@ -1,10 +1,50 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import firebase from "firebase/app";
+import "firebase/firestore";
+import { vuexfireMutations, firestoreAction } from "vuexfire";
 
+const firebaseConfig = {
+  projectId: "m-shinkawa-portfolio",
+  databaseURL: "https://m-shinkawa-portfolio.firebaseio.com"
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {}
+  state: {
+    db: firebaseApp.firestore(),
+    career: [],
+    isSp: false,
+    scrollY: 0
+  },
+  getters: {
+    getCareer: state => {
+      return state.career.timeline;
+    }
+  },
+  mutations: {
+    ...vuexfireMutations,
+    setCareer(state, career) {
+      state.career = career;
+    },
+    setSp(state, isSp) {
+      state.isSp = isSp;
+    },
+    setScrollY(state, scrollY) {
+      state.scrollY = scrollY;
+    }
+  },
+  actions: {
+    setCareerBind: firestoreAction(async ({ bindFirestoreRef, state }) => {
+      const ref = state.db.collection("profile");
+      await bindFirestoreRef("career", ref.doc("career"));
+    }),
+    onResize: ({ commit }) => {
+      commit("setSp", window.innerWidth < 960);
+    },
+    onScroll: ({ commit }) => {
+      commit("setScrollY", window.scrollY);
+    }
+  }
 });
