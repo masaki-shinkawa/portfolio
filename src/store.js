@@ -14,6 +14,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     db: firebaseApp.firestore(),
+    profile: [],
     career: [],
     isSp: false,
     scrollY: 0
@@ -21,13 +22,13 @@ export default new Vuex.Store({
   getters: {
     getCareer: state => {
       return state.career.timeline;
+    },
+    getSelfIntroduction: state => {
+      return state.career.selfIntroduction;
     }
   },
   mutations: {
     ...vuexfireMutations,
-    setCareer(state, career) {
-      state.career = career;
-    },
     setSp(state, isSp) {
       state.isSp = isSp;
     },

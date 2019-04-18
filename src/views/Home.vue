@@ -4,29 +4,26 @@
       <v-layout align-center column justify-center>
         <!-- <h1 class="display-2 font-weight-thin mb-3">@NicoShioSaba</h1> -->
         <h1 class="display-2 font-weight-thin mb-3">{{ username }}</h1>
-        <h4 class="subheading">portfolio</h4>
+        <h4 class="subheading">Front End Engineer</h4>
       </v-layout>
     </v-parallax>
     <v-flex xs12 md10 offset-md1>
       <v-layout row wrap>
         <v-flex class="fade" :class="getFade" xs12 md4>
-          <img class="menu--image" :src="home.profile" />
+          <img class="fade--image" :src="home.profile" />
           <router-link class="fade--title" to="/profile">Profile</router-link>
         </v-flex>
         <v-flex class="fade" :class="getFade" xs12 md4>
-          <img class="menu--image" :src="home.production" />
+          <img class="fade--image" :src="home.production" />
           <router-link class="fade--title" to="/production"
             >Production</router-link
           >
         </v-flex>
         <v-flex class="fade" :class="getFade" xs12 md4>
-          <img class="menu--image" :src="home.blog" />
+          <img class="fade--image" :src="home.blog" />
           <router-link class="fade--title" to="/blog">Blog</router-link>
         </v-flex>
       </v-layout>
-      <v-flex xs12>
-        <p class="copylight">© 2019 · {{ username }} · ALL RIGHTS RESERVED</p>
-      </v-flex>
     </v-flex>
   </v-layout>
 </template>
@@ -57,10 +54,7 @@ export default {
 <style lang="scss" scoped>
 .v-parallax {
   width: 100%;
-  height: calc(100vh - 64px) !important;
-}
-.menu--image {
-  width: 100%;
+  height: 100vh !important;
 }
 .fade {
   transition: all 0.5s;
@@ -82,9 +76,14 @@ export default {
     transform: scaleY(0);
   }
 
+  .fade--image {
+    width: 100%;
+    transition: all 0.5s;
+  }
+
   &:hover {
-    .menu--image {
-      filter: brightness(50%);
+    .fade--image {
+      filter: blur(2px) brightness(50%);
     }
     .fade--title {
       opacity: 1;
@@ -99,8 +98,5 @@ export default {
 .fadein {
   opacity: 1;
   transform: translateY(-50px);
-}
-.copylight {
-  text-align: center;
 }
 </style>

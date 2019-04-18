@@ -8,16 +8,22 @@
         </transition>
       </v-layout>
     </v-content>
+    <common-footer />
   </v-app>
 </template>
 
 <script>
 import CommonHeader from "./components/CommonHeader";
+import CommonFooter from "./components/CommonFooter";
 
 export default {
   name: "App",
   components: {
-    CommonHeader
+    CommonHeader,
+    CommonFooter
+  },
+  created() {
+    this.$store.dispatch("setCareerBind");
   },
   mounted() {
     this.onResize();

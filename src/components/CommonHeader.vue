@@ -1,6 +1,11 @@
 <template>
   <div>
-    <v-toolbar app height="64">
+    <v-toolbar-side-icon
+      v-if="isHome"
+      class="toolbar--side--icon"
+      @click.stop="drawer = !drawer"
+    ></v-toolbar-side-icon>
+    <v-toolbar v-if="!isHome" app height="64">
       <v-toolbar-side-icon
         v-if="isSp"
         @click.stop="drawer = !drawer"
@@ -66,7 +71,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isSp"])
+    ...mapState(["isSp"]),
+    isHome() {
+      return this.$route.path === "/";
+    }
   },
   methods: {
     clickMenu(path) {
@@ -75,3 +83,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.toolbar--side--icon {
+  position: absolute;
+  z-index: 1;
+}
+</style>

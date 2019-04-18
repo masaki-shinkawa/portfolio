@@ -1,7 +1,37 @@
 <template>
   <section>
+    <v-layout justify-center>
+      <v-flex xs12 md8 py-5>
+        <v-card>
+          <v-card-title class="blue">
+            <v-layout row wrap justify-center>
+              <v-flex xs12>
+                <h1 class="text--align--center">Masaki Shinkawa</h1>
+              </v-flex>
+              <v-flex xs12>
+                <h3 class="text--align--center">
+                  ({{ age.year }}歳 {{ age.month }}ヶ月 {{ age.date }}日)
+                </h3>
+              </v-flex>
+            </v-layout>
+          </v-card-title>
+          <v-card-text>
+            <template v-for="(line, i) in getSelfIntroduction">
+              <p :key="i">{{ line }}</p>
+            </template>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
     <v-layout row wrap>
       <v-flex md10 offset-md1>
+        <v-card>
+          <v-card-title class="blue py-2">
+            <v-layout justify-center>
+              <h1>職務経歴</h1>
+            </v-layout>
+          </v-card-title>
+        </v-card>
         <v-timeline :dense="isSp" align-top class="timeline">
           <v-timeline-item
             v-for="(career, i) in getCareer"
@@ -45,19 +75,27 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import moment from "moment";
 
 export default {
   data: () => {
     return {
-      dense: false
+      dense: false,
+      age: {}
     };
   },
   computed: {
     ...mapState(["isSp"]),
-    ...mapGetters(["getCareer"])
+    ...mapGetters(["getCareer", "getSelfIntroduction"])
   },
   created() {
-    this.$store.dispatch("setCareerBind");
+    const diff = moment().diff(moment([1990, 3, 3]), "millisecond");
+    const age = moment(diff).subtract(1970, "year");
+    this.age = {
+      year: age.year(),
+      month: age.month() + 1,
+      date: age.date()
+    };
   }
 };
 </script>
@@ -68,5 +106,11 @@ export default {
 }
 .v-chip {
   margin: 2px;
+}
+.text--align--center {
+  text-align: center;
+}
+.v-card__title {
+  color: white;
 }
 </style>
