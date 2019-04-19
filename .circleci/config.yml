@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  build_deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:latest
@@ -32,3 +32,4 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
