@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build_deploy:
+  build:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -32,17 +32,3 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run: 
-        - name: deploy
-        - command: yarn deploy --only hosting --token=$FIREBASE_TOKEN
-
-workflows:
-  version: 2
-  build_deploy:
-    jobs:
-      - build_deploy:
-          filters:
-            branches:
-              only: master
