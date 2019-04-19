@@ -40,10 +40,9 @@ jobs:
 
 workflows:
   version: 2
-  build_deploy: # ワークフローの名前
+  build_deploy:
     jobs:
-      - build_deploy: # 上で定義したジョブを指定します
+      - deploy:
           filters:
             branches:
-              only: master # developブランチのみを実行対象とします
-
+              only: master
