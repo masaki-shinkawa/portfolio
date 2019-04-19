@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  deploy:
+  build_deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -37,3 +37,13 @@ jobs:
       - run: 
         - name: deploy
         - command: yarn deploy --only hosting --token=$FIREBASE_TOKEN
+
+workflows:
+  version: 2
+  build_deploy: # ワークフローの名前
+    jobs:
+      - build_deploy: # 上で定義したジョブを指定します
+          filters:
+            branches:
+              only: master # developブランチのみを実行対象とします
+
