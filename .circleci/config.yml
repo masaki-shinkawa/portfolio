@@ -33,6 +33,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: yarn deploy --only hosting --token $FIREBASE_TOKEN
+
 workflows:
   version: 2
   build_deploy:
