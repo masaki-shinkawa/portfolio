@@ -14,10 +14,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     db: firebaseApp.firestore(),
-    profile: [],
     career: [],
     isSp: false,
-    scrollY: 0
+    scrollY: 0,
+    butter: null
   },
   getters: {
     getCareer: state => {
@@ -29,6 +29,9 @@ export default new Vuex.Store({
   },
   mutations: {
     ...vuexfireMutations,
+    setButter(state, butter) {
+      state.butter = butter;
+    },
     setSp(state, isSp) {
       state.isSp = isSp;
     },
@@ -37,6 +40,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    initialize: ({ commit }, butter) => {
+      commit("setButter", butter);
+    },
     setCareerBind: firestoreAction(async ({ bindFirestoreRef, state }) => {
       const ref = state.db.collection("profile");
       await bindFirestoreRef("career", ref.doc("career"));

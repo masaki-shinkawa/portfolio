@@ -9,6 +9,7 @@
     "deploy": "yarn build && firebase deploy"
   },
   "dependencies": {
+    "buttercms": "^1.1.4",
     "core-js": "^2.6.5",
     "firebase": "^5.9.4",
     "moment": "^2.24.0",
