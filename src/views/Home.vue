@@ -2,8 +2,7 @@
   <v-layout row wrap>
     <v-parallax :src="home.background" height="700">
       <v-layout align-center column justify-center>
-        <!-- <h1 class="display-2 font-weight-thin mb-3">@NicoShioSaba</h1> -->
-        <h1 class="display-2 font-weight-thin mb-3">{{ username }}</h1>
+        <h1 class="display-2 mb-3">{{ username }}</h1>
         <h4 class="subheading">Front End Engineer</h4>
       </v-layout>
     </v-parallax>
