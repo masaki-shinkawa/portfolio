@@ -18,6 +18,7 @@ export default new Vuex.Store({
   state: {
     db: firebaseApp.firestore(),
     career: [],
+    production: [],
     isSp: false,
     scrollY: 0,
     butter: null,
@@ -28,6 +29,11 @@ export default new Vuex.Store({
   getters: {
     getCareer: state => {
       return state.career.timeline;
+    },
+    getRepositories: state => {
+      return state.production.repositories
+        ? state.production.repositories.reverse()
+        : [];
     },
     getSelfIntroduction: state => {
       return state.career.selfIntroduction;
@@ -73,6 +79,7 @@ export default new Vuex.Store({
     setCareerBind: firestoreAction(async ({ bindFirestoreRef, state }) => {
       const ref = state.db.collection("profile");
       await bindFirestoreRef("career", ref.doc("career"));
+      await bindFirestoreRef("production", ref.doc("production"));
     }),
     onResize: ({ commit }) => {
       commit("setSp", window.innerWidth < 960);
