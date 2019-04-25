@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Profile from "./views/Profile.vue";
+import Production from "./views/Production.vue";
 import Blog from "./views/Blog.vue";
 import BlogDetail from "./views/BlogDetail.vue";
 
@@ -20,6 +21,11 @@ export default new Router({
       path: "/profile",
       name: "Profile",
       component: Profile
+    },
+    {
+      path: "/production",
+      name: "Production",
+      component: Production
     },
     {
       path: "/blog",
