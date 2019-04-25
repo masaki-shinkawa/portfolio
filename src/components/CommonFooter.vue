@@ -6,7 +6,11 @@
       </v-layout>
       <v-flex xs12>
         <v-layout justify-center>
-          <a class="link--icon" href="https://www.adglobe.co.jp/">
+          <a
+            class="link--icon"
+            target="_blank"
+            href="https://www.adglobe.co.jp/"
+          >
             <v-icon>business</v-icon>
           </a>
           <a class="link--icon" href="mailto:masaki.shinkawa0303@gmail.com">

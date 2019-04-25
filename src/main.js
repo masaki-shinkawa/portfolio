@@ -4,8 +4,6 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./registerServiceWorker";
-import Butter from "buttercms";
-export const butter = Butter("your_api_token");
 
 Vue.config.productionTip = false;
 

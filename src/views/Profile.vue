@@ -1,7 +1,7 @@
 <template>
   <section>
     <v-layout justify-center>
-      <v-flex xs12 md8 py-5>
+      <v-flex xs12 md10 py-5>
         <v-card>
           <v-card-title class="blue">
             <v-layout row wrap justify-center>
