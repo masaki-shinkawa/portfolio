@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "stg-m-shinkawa-portfolio",
     "public": "dist",
     "ignore": [
       "firebase.json",
